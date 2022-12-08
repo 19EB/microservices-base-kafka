@@ -74,19 +74,15 @@ This project uses the following environment variables:
 
 ```
 # Port
-
 PORT=8000
 
 # User service
-
 USER_SERVICE_URL='http://localhost:8001'
 
 # Client service
-
 CLIENT_SERVICE_URL='http://localhost:8002'
 
 # Product service
-
 PRODUCT_SERVICE_URL='http://localhost:8003'
 ```
 
