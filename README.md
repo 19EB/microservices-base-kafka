@@ -9,12 +9,6 @@
 
 Basic microservices project that includes a gateway (api-gateway) and 3 microservices (user/product/client) and a messaging queue
 
-  
-
-This is just my personal project experimenting how the architecture works.
-
-  
-
 This variation utilizes Kafka as the messaging queue so if one microservice goes down, it will receive messages when it gets back up.
 
   
