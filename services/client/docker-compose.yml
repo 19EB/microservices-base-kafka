@@ -1,0 +1,15 @@
+version: '2'
+networks:
+  default:
+    name: kafka_default
+services:
+  app:
+    container_name: client-microservice
+    build: .
+    env_file: .env
+    environment:
+      - DB=
+      - PORT=8002
+      - KAFKA_BROKER=broker:29092
+    ports:
+      - 8002:8002
