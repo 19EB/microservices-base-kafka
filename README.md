@@ -9,12 +9,6 @@
 
 Basic microservices project that includes a gateway (api-gateway) and 3 microservices (user/product/client) and a messaging queue
 
-  
-
-This is just my personal project experimenting how the architecture works.
-
-  
-
 This variation utilizes Kafka as the messaging queue so if one microservice goes down, it will receive messages when it gets back up.
 
   
@@ -42,13 +36,7 @@ This variation utilizes Kafka as the messaging queue so if one microservice goes
   
 
 ```
-
-  
-
 git clone https://github.com/19EB/microservices-base
-
-  
-
 ```
 
   
@@ -58,62 +46,38 @@ git clone https://github.com/19EB/microservices-base
   
 
 ```
-
-  
-
 cd api-gateway
 
-  
-
 npm install
-
-  
-
 ```
 
 - Install dependencies on each microservice (user, product and client)
 
 ```
-
-  
-
 cd services/<microservice>
 
-  
-
 npm install
-
-  
-
 ```
   
 
 ### Environment variables
-
-  
 
 This project uses the following environment variables:
 
 ##### api-gateway
 
 ```
-
 # Port
-
 PORT=8000
 
 # User service
-
 USER_SERVICE_URL='http://localhost:8001'
 
 # Client service
-
 CLIENT_SERVICE_URL='http://localhost:8002'
 
 # Product service
-
 PRODUCT_SERVICE_URL='http://localhost:8003'
-
 ```
 
   
@@ -129,7 +93,6 @@ PORT=8001
 
 # Apache Kafka configuration
 KAFKA_BROKER='localhost:29092'
-
 ```
 
 
@@ -149,52 +112,34 @@ docker-compose up -d
 Development mode
 
 ```
-
 cd services/<microservice>
 
-  
-
 npm run dev
-
 ```
 
 Production mode
 
 ```
-
 cd services/<microservice>
 
-  
-
 npm start
-
 ```
 
   
 
 - Start the api-gateway
-
 ```
-
 cd api-gateway
-
-  
 
 npm start
 
-  
-
 or
 
-  
-
 npm run dev
-
 ```
 
 Navigate to `http://localhost:8000`
 
-  
 
 ### Endpoints
 
