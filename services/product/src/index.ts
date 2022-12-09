@@ -9,10 +9,13 @@ const Start = async() => {
     console.log(`Running server in mode: ${process.env.NODE_ENV}`);
     const app = express();
     
+    // Connect to database
     await dbConnection();
-    
+
+    // Create kafka client that will be attached to the express-api
     const kafka = await CreateKafkaClient();
 
+    // Express api
     await ExpressLogic(app, kafka);
     
     app.listen(config.PORT, ()=>{
@@ -23,4 +26,6 @@ const Start = async() => {
     });
 }
 
+// Start the application
 Start();
+

@@ -5,6 +5,7 @@ import UserService from '../service/user-service';
 const KAFKA_GROUP = 'user-group';
 const KAFKA_TOPIC = 'user-topic';
 
+// Function to initialize Kafka client
 export const CreateKafkaClient = async () => {
     const brokerURL = config.KAFKA_BROKER;
     
@@ -13,10 +14,14 @@ export const CreateKafkaClient = async () => {
         brokers: [brokerURL],
         logLevel: logLevel.ERROR,
     });
+
     return kafka;
 }
 
+// Function used for publishing Kafka events
 export const KafkaPublish = async (kafka:Kafka, topic:string, payload:any) => {
+
+    // Create and connect producer
     const producer = kafka.producer();
     await producer.connect();
 
@@ -28,19 +33,25 @@ export const KafkaPublish = async (kafka:Kafka, topic:string, payload:any) => {
         ],
     });
 
+    // Disconnect producer after publishing
     await producer.disconnect();
 }
 
-export const KafkaSubscribe = async (kafka:Kafka, service:UserService) => {
-    const consumer = kafka.consumer({ groupId: KAFKA_GROUP });
 
+// Subscribe function that creates a consumer with this services unique groupId and topic
+export const KafkaSubscribe = async (kafka:Kafka, service:UserService) => {
+    // Create and connect consumer
+    const consumer = kafka.consumer({ groupId: KAFKA_GROUP });
     await consumer.connect();
 
+    // Subscribe to the topic assigned for this microservice
     await consumer.subscribe({ topic: KAFKA_TOPIC, fromBeginning: true });
 
+    // Run the consumer and handle each message
     await consumer.run({
         eachMessage: async ({message}) => {
             if(message.value) {
+                // Run through user-service HandlePayload function
                 service.HandlePayload(message.value.toString());
             }
         }

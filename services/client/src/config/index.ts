@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 
+// Grab environment variables from .env.{env} when not running in production mode
 if(process.env.NODE_ENV !== 'production') {
     const cfg = `./.env.${process.env.NODE_ENV}`;
     dotenv.config({path: cfg});
